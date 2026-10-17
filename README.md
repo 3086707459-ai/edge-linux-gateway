@@ -4,11 +4,15 @@
 
 主体使用 **C++17 + Linux/POSIX + SQLite + CMake**。没有开发板也可以完整演示；接入协议匹配的传感器后可使用同一程序采集。这里的“工业”指应用场景，不代表已通过工业认证或现场可靠性验收。
 
+[![Build and test](https://github.com/3086707459-ai/edge-linux-gateway/actions/workflows/ci.yml/badge.svg)](https://github.com/3086707459-ai/edge-linux-gateway/actions/workflows/ci.yml)
+
 ## 快速运行
 
 Ubuntu/Debian、树莓派 64 位系统等 Linux 环境；GCC 9+、CMake 3.16+。Windows 用户可使用 WSL2 的模拟模式；USB 串口接入需自行配置 USB 转发。
 
 ```bash
+git clone https://github.com/3086707459-ai/edge-linux-gateway.git
+cd edge-linux-gateway
 sudo apt-get update
 sudo apt-get install -y build-essential cmake libsqlite3-dev python3 curl
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release

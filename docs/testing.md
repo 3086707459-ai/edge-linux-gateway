@@ -52,6 +52,18 @@ ASAN_OPTIONS=detect_leaks=0 ctest --test-dir build-sanitize --output-on-failure
 
 此时地址越界与未定义行为检查仍启用，**未完成泄漏扫描**。SQLite 临时静态库自身没有插桩，sanitizer 结论仅覆盖应用中插桩的代码及运行时可检测行为。仓库的 GitHub Actions 没有关闭泄漏扫描，需以实际远端执行结果为准。
 
+## GitHub Actions 远端验证
+
+已在 GitHub 托管 runner 上执行并通过 [build-and-test #1](https://github.com/3086707459-ai/edge-linux-gateway/actions/runs/39058114410)，对应代码提交 `840352e`。三组任务均完成依赖安装、配置、编译、单元/集成测试和配置校验：
+
+| 任务 | 结果 |
+| --- | --- |
+| Debug，sanitizer OFF | 通过 |
+| Debug，ASan/UBSan ON | 通过；未设置 detect_leaks=0 |
+| Release，sanitizer OFF | 通过 |
+
+因此，上述 LeakSanitizer 限制仅适用于本地开发容器；GitHub runner 的 sanitizer 任务已正常完成。最新提交结果可在仓库 Actions 页面和 README 状态徽章查看。
+
 自测性能：在另一个终端运行网关后，取得 PID 再执行：
 
 ```bash
@@ -62,4 +74,4 @@ python3 tools/measure.py --pid <gateway-pid> --duration 30
 
 ## 尚待实际环境验收
 
-ARM64 交叉编译、真实开发板和 USB-RS485、物理掉电、串口电气时序、长期稳定性、闪存磨损、磁盘满、Docker 构建/运行、systemd 安装，以及 GitHub Actions 的远端执行都需要相应环境验证。配置和脚本已提供，但不把“已提供”写成“已通过”。前端已完成接口和 JS 语法验证，尚未进行多浏览器视觉验收。
+ARM64 交叉编译、真实开发板和 USB-RS485、物理掉电、串口电气时序、长期稳定性、闪存磨损、磁盘满、Docker 构建/运行及 systemd 安装都需要相应环境验证。配置和脚本已提供，但不把“已提供”写成“已通过”。前端已完成接口和 JS 语法验证，尚未进行多浏览器视觉验收。
