@@ -1,0 +1,22 @@
+{
+  "requests": 99,
+  "errors": 0,
+  "duration_requested_s": 5.0,
+  "latency_ms": {
+    "min": 0.5229509999935544,
+    "median": 0.6420420002086757,
+    "p95": 0.9901789999275934,
+    "max": 3.5827029998927173
+  },
+  "rss_kib_max": 456,
+  "conditions": {
+    "architecture": "x86_64",
+    "kernel": "6.18.55",
+    "compiler": "13.3.0",
+    "build": "Release",
+    "source": "simulate",
+    "interval_ms": 100,
+    "sqlite": "3.53.1, static, uninstrumented",
+    "scope": "5-second development-container snapshot; not target-board or endurance validation"
+  }
+}

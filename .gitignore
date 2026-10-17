@@ -1,0 +1,12 @@
+/build*/
+/out/
+*.db
+*.db-wal
+*.db-shm
+*.db.lock
+*.sqlite*
+__pycache__/
+*.pyc
+*.log
+.env
+compile_commands.json
